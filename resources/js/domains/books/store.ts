@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { ref, computed } from 'vue';
-import type { Book, BookForm } from './types/types';
-import BookForm from './components/BookForm.vue';
+import type { Book } from './types/types';
 
 // state
 const books = ref<Book[]>([]);
@@ -16,7 +15,7 @@ export const fetchBooks = async () => {
     books.value = data;
 };
 
-export const createBook = async (newBook: BookForm) => {
+export const createBook = async (newBook) => {
     const {data} = await axios.post('/api/books', newBook);
     if(!data) return
     books.value = data;

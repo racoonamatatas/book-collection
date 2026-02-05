@@ -7,8 +7,3 @@ export interface Book {
   updated_at: string;
 }
 
-export interface BookForm {
-    title: string;
-    summary: string;
-    author_id: number | null;
-}

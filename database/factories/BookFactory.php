@@ -23,6 +23,7 @@ class BookFactory extends Factory
 
         return [
             'title' => $this->faker->title(),
+            'summary' => $this->faker->paragraph(),
             'isbn' => $this->faker->ISBN(),
         ];
     }

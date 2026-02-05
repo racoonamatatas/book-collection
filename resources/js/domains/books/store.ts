@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { ref, computed } from 'vue';
+import type { Book } from './types/types';
 
 // state
-const books = ref([]);
+const books = ref<Book[]>([]);
 
 // getters
 export const getAllBooks = computed(() => books.value);

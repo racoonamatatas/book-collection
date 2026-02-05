@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Faker\Provider\BookProvider;
+use App\Models\Author;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
@@ -18,13 +19,11 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        // Register custom faker provider.
-        $this->faker->addProvider(new BookProvider($this->faker));
 
         return [
             'title' => $this->faker->title(),
             'summary' => $this->faker->paragraph(),
-            'isbn' => $this->faker->ISBN(),
+            'author_id' => Author::inRandomOrder()->first()->id,
         ];
     }
 }

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 
-import {ref, watch} from 'vue';
+import {ref} from 'vue';
 import { fetchAuthors, getAllAuthors } from '../../authors/store';
 import type { NewBookData } from '../types/types';
-// import { watch } from 'node:fs';
 
 // fetch authors when component is mounted
 fetchAuthors();

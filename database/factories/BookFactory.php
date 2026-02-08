@@ -21,7 +21,7 @@ class BookFactory extends Factory
     {
 
         return [
-            'title' => $this->faker->title(),
+            'title' => $this->faker->sentence(),
             'summary' => $this->faker->paragraph(),
             'author_id' => Author::inRandomOrder()->first()->id,
         ];

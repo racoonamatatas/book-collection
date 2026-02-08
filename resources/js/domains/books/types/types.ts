@@ -7,3 +7,8 @@ export interface Book {
   updated_at: string;
 }
 
+export interface NewBookData {
+  title: string;
+  summary: string;
+  author_id: number | null; 
+}

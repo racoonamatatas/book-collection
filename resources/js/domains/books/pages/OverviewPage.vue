@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { fetchBooks, getAllBooks } from '../store';
+import { deleteBook, fetchBooks, getAllBooks } from '../store';
 
 fetchBooks();
 </script>
@@ -15,7 +15,13 @@ fetchBooks();
             <tr v-for="book in getAllBooks" :key="book.id">
                 <td>{{ book.title }}</td>
                 <td>{{ book.summary }}</td>
-                <router-link :to="{name: 'books.edit', params: {id: book.id}}">Edit</router-link>
+                <td>
+                    <router-link :to="{name: 'books.edit', params: {id: book.id}}">Edit</router-link>
+                </td>
+                <td>
+                    <button @click="deleteBook(book.id)">Delete</button>
+                </td>
+                    
             </tr>
         </tbody>
     </table>

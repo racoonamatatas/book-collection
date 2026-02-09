@@ -30,4 +30,10 @@ class BookController extends Controller
         $books = Book::all();
         return BookResource::collection($books);
     }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return response()->json(['message' => 'Book sucessfully deleted']);
+    }
 }

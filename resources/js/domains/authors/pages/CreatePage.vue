@@ -22,6 +22,6 @@ const handleSubmit = async (data: AuthorData) => {
 <template>
     <div>
         <h2>Add a new author:</h2>
-        <AuthorForm :author="author" @submit.prevent="handleSubmit" />
+        <AuthorForm :author="author" @submit="handleSubmit" />
     </div>
 </template>

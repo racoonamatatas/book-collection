@@ -12,6 +12,7 @@ const emit = defineEmits<{
 const form = ref<AuthorData>({...props.author});
 
 const handleSubmit = () => emit('submit', form.value);
+
 </script>
 
 <template>
@@ -19,5 +20,6 @@ const handleSubmit = () => emit('submit', form.value);
         <label>Name:</label>
         <input v-model="form.name" type="text" required />
 
+        <button type="submit">Submit</button> 
     </form>
 </template>

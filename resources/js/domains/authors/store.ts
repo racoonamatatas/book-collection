@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ref, computed } from 'vue';
-import { Author } from './types/types';
+import type { Author, AuthorData } from './types/types';
 
 
 // state
@@ -15,3 +15,9 @@ export const fetchAuthors = async () => {
     if(!data) return
     authors.value = data;
 };
+
+export const createAuthor = async(newAuthor: AuthorData) => {
+    const { data } = await axios.post('/api/authors', newAuthor);
+    if (!data) return;
+    authors.value = data;
+}

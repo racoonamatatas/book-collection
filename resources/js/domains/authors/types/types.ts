@@ -7,4 +7,5 @@ export interface AuthorData {
   updated_at?: string;
 }
 
+// Removes 'optional' attribute.
 export type Author = Concrete<AuthorData>;

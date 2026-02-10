@@ -1,20 +1,20 @@
 <script setup lang="ts">
 
 import { useRouter } from 'vue-router';
-import type { NewBookData } from '../types/types';
+import type { BookData } from '../types/types';
 import { ref } from 'vue';
 import { createBook } from '../store';
 import BookForm from '../components/BookForm.vue';
 
 const router = useRouter();
 
-const book = ref<NewBookData>({
+const book = ref<BookData>({
     title: '',
     summary: '',
     author_id: null
 });
 
-const handleSubmit = async (data: NewBookData) => {
+const handleSubmit = async (data: BookData) => {
     await createBook(data);
     router.push({name: 'books.overview'});
 }

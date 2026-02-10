@@ -2,16 +2,18 @@
 
 import {ref} from 'vue';
 import { fetchAuthors, getAllAuthors } from '../../authors/store';
-import type { NewBookData } from '../types/types';
+import type { BookData } from '../types/types';
 
 // fetch authors when component is mounted
 fetchAuthors();
 
-const props = defineProps<{book: NewBookData}>();
+const props = defineProps<{book: BookData}>();
 
-const emit = defineEmits(['submit']);
+const emit = defineEmits<{
+    submit: [data: BookData]
+}>();
 
-const form = ref({...props.book});
+const form = ref<BookData>({...props.book});
 
 const handleSubmit = () => emit('submit', form.value);
 

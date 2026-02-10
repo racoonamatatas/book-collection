@@ -7,8 +7,12 @@ export interface Book {
   updated_at: string;
 }
 
-export interface NewBookData {
+
+export interface BookData {
+  id?: number;
   title: string;
   summary: string;
-  author_id: number | null; 
+  author_id: number | null;
+  created_at?: string;
+  updated_at?: string;
 }

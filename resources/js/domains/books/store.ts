@@ -24,14 +24,14 @@ export const createBook = async (newBook: BookData) => {
     books.value = data;
 };
 
-// Checks the properties that may not be present in BookData,
-// and that author_id has been set
+// Checks the existance of  the'optional' properties of BookData,
+// and that author_id has been set.
 const isBook = (data: BookData): data is Book => {
     return (
         typeof data.id === 'number' &&
         typeof data.author_id === 'number' &&
         typeof data.created_at === 'string' &&
-        typeof data.updated_at === 'number'
+        typeof data.updated_at === 'string'
     );
 }
 export const updateBook = async (id: Number, updatedBook: BookData) => {

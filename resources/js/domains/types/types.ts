@@ -1,27 +1,15 @@
-
-export interface BookData {
-  id?: number;
-  title: string;
-  summary: string;
-  author_id: number | null;
-  created_at?: string;
-  updated_at?: string;
-}
-
 // Remove 'null' value option from a type's property
-type RemoveNull<Type> = {
+export type RemoveNull<Type> = {
   [Property in keyof Type] : Exclude<Type[Property], null>;
 };
 
 // Remove 'optional' attributes from a type's properties
-type Concrete<Type> = {
+export type Concrete<Type> = {
   [Property in keyof Type]-?: Type[Property];
 }
 
 // Order is important here! First remove 'optional' attribute,
 // then remove null option. Otherwise, properties can be undefined 
-// or a type, but NOT optional! 
+// OR a type, but NOT optional! 
 // Making a concrete type first removes the undefined possibility.
-type NonNullConcrete<Type> = RemoveNull<Concrete<Type>>;
-
-export type Book = NonNullConcrete<BookData>;
+export type NonNullConcrete<Type> = RemoveNull<Concrete<Type>>;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Form from '../components/BookForm.vue';
+import BookForm from '../components/BookForm.vue';
 import { fetchBooks, getBookById, updateBook } from '../store';
 import type { Book, BookData } from '../types/types';
 
@@ -23,6 +23,6 @@ const handleSubmit = async (data: BookData) => {
 <template>
     <div>
         <h2>Edit book</h2>
-        <Form v-if="book" :book="book" @submit="handleSubmit" />
+        <BookForm v-if="book" :book="book" @submit="handleSubmit" />
     </div>
 </template>

@@ -9,6 +9,9 @@ const authors = ref<Author[]>([]);
 // getters
 export const getAllAuthors = computed(() => authors.value);
 
+export const getAuthorById = (id: number) => computed(
+    () => authors.value.find(author => author.id == id));
+
 // actions
 export const fetchAuthors = async () => {
     const {data} = await axios.get('/api/authors');
@@ -21,3 +24,15 @@ export const createAuthor = async(newAuthor: AuthorData) => {
     if (!data) return;
     authors.value = data;
 }
+
+export const updateAuthor = async (id: Number, updatedAuthor: AuthorData) => {
+
+    const { data } = await axios.put(`/api/authors/${id}`, updatedAuthor);
+    if (!data) return;
+    authors.value = data;
+};
+
+export const deleteAuthor =  async (id: Number) => {
+    await axios.delete(`/api/authors/${id}`);
+    authors.value = authors.value.filter(author => author.id !== id);
+}   

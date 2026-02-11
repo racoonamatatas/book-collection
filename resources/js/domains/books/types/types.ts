@@ -9,4 +9,5 @@ export interface BookData {
   updated_at?: string;
 }
 
+// Properties cannot be optional nor nullable.
 export type Book = NonNullConcrete<BookData>;

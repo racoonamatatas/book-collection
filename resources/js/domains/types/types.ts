@@ -10,6 +10,6 @@ export type Concrete<Type> = {
 
 // Order is important here! First remove 'optional' attribute,
 // then remove null option. Otherwise, properties can be undefined 
-// OR a type, but NOT optional! 
+// OR a type, but NOT optional.... which is nonsense :)
 // Making a concrete type first removes the undefined possibility.
 export type NonNullConcrete<Type> = RemoveNull<Concrete<Type>>;

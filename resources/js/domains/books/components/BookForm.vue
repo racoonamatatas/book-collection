@@ -1,22 +1,17 @@
 <script setup lang="ts">
-
-import {ref} from 'vue';
+import { ref } from 'vue';
 import { fetchAuthors, getAllAuthors } from '../../authors/store';
-import type { BookData } from '../types/types';
 
-// fetch authors when component is mounted
+// Fetch authors when component is mounted
 fetchAuthors();
 
-const props = defineProps<{book: BookData}>();
+const props = defineProps({ book: Object });
 
-const emit = defineEmits<{
-    submit: [data: BookData]
-}>();
+const emit = defineEmits(['submit']);
 
-const form = ref<BookData>({...props.book});
+const form = ref({ ...props.book });
 
 const handleSubmit = () => emit('submit', form.value);
-
 </script>
 
 <template>
@@ -28,13 +23,13 @@ const handleSubmit = () => emit('submit', form.value);
         <textarea v-model="form.summary" required></textarea>
 
         <label>Author:</label>
-        
         <select v-model="form.author_id" required>
             <option v-for="author in getAllAuthors" :key="author.id" :value="author.id">
                 {{ author.name }}
             </option>
         </select>
 
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
     </form>
 </template>
+

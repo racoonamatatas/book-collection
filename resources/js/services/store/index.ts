@@ -1,10 +1,12 @@
-import { ref, computed } from 'vue'
+import { ref, computed, Ref } from 'vue'
 import { deleteRequest, getRequest, postRequest, putRequest } from '../http';
 
 // Type used must have an id.
 export const storeModuleFactory = <Type extends { id: number }> (moduleName: string) => {
     
-    const state = ref<Record<number,Type>>({});
+    // Type of state must be explicit, otherwise Ref<UnwrapRef<Type[]>> is inferred.
+    // .value then returns UnwrapRefSimple<Type>[] instead of Type[].
+    const state: Ref<Type[]> = ref([]);
 
     const getters = {
         all: computed(() => state.value),

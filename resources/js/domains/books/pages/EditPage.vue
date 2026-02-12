@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import BookForm from '../components/BookForm.vue';
 import { fetchBooks, getBookById, updateBook } from '../store';
-import type { Book, BookData } from '../types/types';
+import type { Book } from '../types/types';
 
 const route = useRoute();
 const router = useRouter();
@@ -14,7 +14,7 @@ const bookId = Number(route.params.id);
 
 const book = getBookById(bookId);
 
-const handleSubmit = async (data: BookData) => {
+const handleSubmit = async (data: Book) => {
     await updateBook(bookId, data);
     router.push({ name: 'books.overview' });
 };

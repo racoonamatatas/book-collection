@@ -1,5 +1,4 @@
 import axios from 'axios';
-import type {DomainType} from '../../domains/types/types'
 
 const http = axios.create({
     baseURL: '/api',
@@ -11,8 +10,8 @@ const http = axios.create({
 export const getRequest = (endpoint: string) => http.get(endpoint);
 
 // ReturnType is defaulted to an array of the RequestType.
-export const postRequest = <RequestType extends DomainType, ReturnType = RequestType[]>(endpoint: string, data: RequestType) => http.post<ReturnType>(endpoint, data);
+export const postRequest = <RequestType, ReturnType = RequestType[]>(endpoint: string, data: RequestType) => http.post<ReturnType>(endpoint, data);
 
-export const putRequest = <RequestType extends DomainType, ReturnType = RequestType[]>(endpoint: string, data: RequestType) => http.put<ReturnType>(endpoint, data);
+export const putRequest = <RequestType, ReturnType = RequestType[]>(endpoint: string, data: RequestType) => http.put<ReturnType>(endpoint, data);
 
 export const deleteRequest = (endpoint: string) => http.delete(endpoint);

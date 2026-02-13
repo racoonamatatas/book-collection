@@ -1,4 +1,4 @@
-import { ref, computed, Ref } from 'vue'
+import { ref, computed, Ref, ComputedRef } from 'vue'
 import { deleteRequest, getRequest, postRequest, putRequest } from '../http';
 
 // Type used must have an id.
@@ -9,7 +9,7 @@ export const storeModuleFactory = <Type extends { id: number }> (moduleName: str
     const state: Ref<Type[]> = ref([]);
 
     const getters = {
-        all: computed(() => state.value),
+        all: computed(() => state.value) as ComputedRef<Type[]>,
         getById: (id: number) => computed(() => state.value[id])
     };
 

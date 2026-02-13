@@ -14,7 +14,8 @@ bookStore.actions.getAll();
                 <th>Title</th>
                 <th>Summary</th>
             </tr>
-            <tr v-for="book in bookStore.getters.all" :key="book.id">
+            <!--Vue automatically unwraps the top level of template scope binding-->
+            <tr v-for="book in bookStore.getters.all.value" :key="book.id">
                 <td>{{ book.title }}</td>
                 <td>{{ book.summary }}</td>
                 <td>

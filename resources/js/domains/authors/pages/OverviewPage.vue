@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { deleteAuthor, fetchAuthors, getAllAuthors } from '../store';
+import { authorStore } from '../store';
 
-fetchAuthors();
+authorStore.actions.getAll();
+
 </script>
 
 <template>
@@ -11,13 +12,13 @@ fetchAuthors();
             <tr>
                 <th>Author</th>
             </tr>
-            <tr v-for="author in getAllAuthors" :key="author.id">
+            <tr v-for="author in authorStore.getters.all.value" :key="author.id">
                 <td>{{ author.name }}</td>
                 <td>
                     <router-link :to="{name: 'authors.edit', params: {id: author.id}}">Edit</router-link>
                 </td>
                 <td>
-                    <button @click="deleteAuthor(author.id)">Delete</button>
+                    <button @click="authorStore.actions.delete(author.id)">Delete</button>
                 </td>
             </tr>
                             

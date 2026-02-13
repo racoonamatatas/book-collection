@@ -6,18 +6,18 @@ import { Author } from '../types/types';
 const authors= authorStore.getters.all;
 
 // Debug logging - will show empty array initially
-console.log('Authors value (before mount):', authors.value);
-console.log('Authors length (before mount):', authors.value?.length);
+// console.log('Authors value (before mount):', authors.value);
+// console.log('Authors length (before mount):', authors.value?.length);
 
 onMounted(async () => {
     await authorStore.actions.getAll();
     
     // Debug logging - will show loaded data
-    console.log('Authors value (after load):', authors.value);
-    console.log('Authors length (after load):', authors.value?.length);
-    authors.value?.forEach((author, index) => {
-        console.log(`Index ${index}:`, author);
-    });
+    // console.log('Authors value (after load):', authors.value);
+    // console.log('Authors length (after load):', authors.value?.length);
+    // authors.value?.forEach((author, index) => {
+    //     console.log(`Index ${index}:`, author);
+    // });
 });
 </script>
 

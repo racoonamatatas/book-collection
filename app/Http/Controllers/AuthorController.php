@@ -36,9 +36,11 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         if ($author->books()->exists()) {
+            $books = $author->books()->pluck('title')->toArray();
             return response()->json([
                 'success' => false,
-                'message' => 'Cannot delete author. They have associated books.'
+                'message' => 'Cannot delete author. They have associated books.',
+                'books' => $books
             ], 422);
         }
 

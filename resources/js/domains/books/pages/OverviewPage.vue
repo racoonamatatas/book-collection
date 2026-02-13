@@ -21,18 +21,18 @@ import type { Book } from '../types/types';
 const books = bookStore.getters.all;
 
 // Debug logging - will show empty array initially
-console.log('Books value (before mount):', books.value);
-console.log('Books length (before mount):', books.value?.length);
+// console.log('Books value (before mount):', books.value);
+// console.log('Books length (before mount):', books.value?.length);
 
 onMounted(async () => {
     await bookStore.actions.getAll();
     
     // Debug logging - will show loaded data
-    console.log('Books value (after load):', books.value);
-    console.log('Books length (after load):', books.value?.length);
-    books.value?.forEach((book, index) => {
-        console.log(`Index ${index}:`, book);
-    });
+    // console.log('Books value (after load):', books.value);
+    // console.log('Books length (after load):', books.value?.length);
+    // books.value?.forEach((book, index) => {
+    //     console.log(`Index ${index}:`, book);
+    // });
 });
 
 </script>

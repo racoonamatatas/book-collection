@@ -4,9 +4,8 @@ import { deleteRequest, getRequest, postRequest, putRequest } from '../http';
 // Type used must have an id.
 export const storeModuleFactory = <Type extends { id: number }> (moduleName: string) => {
     
-    // Type of state must be explicit, otherwise Ref<UnwrapRef<Type[]>> is inferred.
-    // .value then returns UnwrapRefSimple<Type>[] instead of Type[].
-    const state: Ref<Type[]> = ref([]);
+    // The ref contains a single object with keys of type number and values of type Type.
+    const state = ref<Record<number,Type>>({});
 
     const getters = {
         all: computed(() => state.value),
@@ -16,19 +15,15 @@ export const storeModuleFactory = <Type extends { id: number }> (moduleName: str
     const setters = {
         setAll: (items: Type[]) => {
             for (const item of items) {
-                // Database starts at index 1, not 0.
-                state.value[item.id - 1] = Object.freeze(item);
+                  state.value[item.id] = Object.freeze(item);
             } 
         },
 
-        // setAll: (items: Type[]) => {
-        //     state.value = items.map(item => Object.freeze(item));
-        // },
-        
+       
         deleteByItem: (item: Type) => {
             delete state.value[item.id];
         }
-    };
+    }
 
 
     const actions = {

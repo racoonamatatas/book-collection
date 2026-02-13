@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { AuthorData } from '../types/types';
+import type { Author } from '../types/types';
 
 
-const props = defineProps<{author: AuthorData}>();
+const props = defineProps<{author: Author}>();
 
 const emit = defineEmits<{
-    submit: [data: AuthorData]
+    submit: [data: Author]
 }>();
 
-const form = ref<AuthorData>({...props.author});
+const form = ref<Author>({...props.author});
 
 const handleSubmit = () => emit('submit', form.value);
 

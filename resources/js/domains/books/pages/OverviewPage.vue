@@ -1,9 +1,39 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { ComputedRef, onMounted } from 'vue';
 import { bookStore } from '../store';
+import type { Book } from '../types/types';
 
 // get all the books
-bookStore.actions.getAll();
+// bookStore.actions.getAll();
+// onMounted(async () => {
+//     await bookStore.actions.getAll();
+// });
+
+// const books = bookStore.getters.all;
+
+// // Debug logging
+// console.log('Books value:', books.value);
+// console.log('Books length:', books.value?.length);
+// books.value?.forEach((book, index) => {
+//     console.log(`Index ${index}:`, book);
+// });
+
+const books = bookStore.getters.all;
+
+// Debug logging - will show empty array initially
+console.log('Books value (before mount):', books.value);
+console.log('Books length (before mount):', books.value?.length);
+
+onMounted(async () => {
+    await bookStore.actions.getAll();
+    
+    // Debug logging - will show loaded data
+    console.log('Books value (after load):', books.value);
+    console.log('Books length (after load):', books.value?.length);
+    books.value?.forEach((book, index) => {
+        console.log(`Index ${index}:`, book);
+    });
+});
 
 </script>
 
@@ -15,7 +45,7 @@ bookStore.actions.getAll();
                 <th>Summary</th>
             </tr>
             <!--Vue automatically unwraps the top level of template scope binding-->
-            <tr v-for="book in bookStore.getters.all.value" :key="book.id">
+            <tr v-for="book in books" :key="book.id">
                 <td>{{ book.title }}</td>
                 <td>{{ book.summary }}</td>
                 <td>

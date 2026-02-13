@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router';
 import AuthorForm from '../components/AuthorForm.vue';
 import type { Author } from '../types/types';
 import { authorStore} from '../store';
+import { onMounted } from 'vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -15,7 +16,8 @@ const router = useRouter();
 //     await updateAuthor(authorId, data);
 //     router.push({name: 'authors.overview'});
 // }
-authorStore.actions.getAll(); // is this needed? 
+
+authorStore.actions.getAll();
 
 const authorId = Number(route.params.id);
 

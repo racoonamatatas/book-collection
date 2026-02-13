@@ -36,4 +36,4 @@ import { storeModuleFactory } from '../../services/store';
 //     authors.value = authors.value.filter(author => author.id !== id);
 // }
 
-export const authorStore = storeModuleFactory<Author>('author');
+export const authorStore = storeModuleFactory<Author>('authors');

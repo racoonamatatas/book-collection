@@ -1,6 +1,4 @@
-import { ref, computed } from 'vue';
 import type { Book } from './types/types';
-import { deleteRequest, getRequest, postRequest, putRequest } from '../../services/http';
 import { storeModuleFactory } from '../../services/store';
 import { onMounted } from 'vue';
 
